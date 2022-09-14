@@ -1,6 +1,7 @@
 from django.db import models
 
 class AutoMobileVO(models.Model):
+    import_href = models.CharField(max_length=200, unique=True, null=True, blank=True)
     vin = models.CharField(max_length=17)
 
 class Technician(models.Model):

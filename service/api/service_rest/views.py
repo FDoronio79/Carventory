@@ -10,7 +10,7 @@ from .models import AutoMobileVO, Technician, Appointment
 
 class AutoMobileVOEncoder(ModelEncoder):
     model = AutoMobileVO
-    properties = ["vin"]
+    properties = ["import_href", "vin"]
 
 
 class TechnicianDetailEncoder(ModelEncoder):
@@ -92,6 +92,57 @@ def api_list_appointments(request):
             safe=False,
         )
 
+@require_http_methods(["GET", "DELETE", "PUT"])
+def api_detail_appointments(request, pk):
+    if request.method == "GET":
+        appointment = Appointment.objects.get(id=pk)
+        try:
+            
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentDetailEncoder,
+                safe=False
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse(
+                {"message": "Appointment does not exist"},
+                status=400
+                )
+            return response
+    elif request.method == "DELETE":
+        try:
+            appointment = Appointment.objects.get(id=pk)
+            appointment.delete()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentDetailEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Appointment Does not exist"})
+
+    else:
+        content = json.loads(request.body)
+        try:
+            appointment = Appointment.objects.get(id=pk)
+            props = ["status"]
+            for prop in props:
+                if prop in content:
+                    setattr(appointment, prop, content[prop])
+            appointment.save()
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentDetailEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse(
+                {"message": "Appointment does not exist"},
+                status=400
+            )
+            return response
+
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
@@ -131,3 +182,25 @@ def api_show_technician(request, pk):
     else:
         count, _ = Technician.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
+
+@require_http_methods(["GET"])
+def api_vin_detail(request, pk):
+    if request.method == "GET":
+        try:
+            # to test at endpoint, use vin for pk in path
+            all_appointments = Appointment.objects.filter(vin=pk)
+            # all_appointments = Appointment.objects.all()
+            return JsonResponse(
+                {"all_appointments": all_appointments},
+                encoder=AppointmentDetailEncoder
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse(
+                {"message": "Appointment does not exist"},
+                status=404,
+            )
+    else:
+        return JsonResponse(
+            {"message": "BRUHHHHHH"},
+            status=400,
+        )
