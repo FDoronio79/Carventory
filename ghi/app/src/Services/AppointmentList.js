@@ -1,13 +1,18 @@
 import React from 'react';
 
-class ServiceHistory extends React.Component {
+class AppointmentsList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             status: "",
             appointments: [],
         }
+        this.handleCancel = this.handleCancel.bind(this);
+        this.handleFinished = this.handleFinished.bind(this);
+
     }
+
+    // Loads everything into a list on the page
     async componentDidMount() {
         const url = "http://localhost:8080/api/appointments/";
         const response = await fetch(url);
@@ -16,6 +21,35 @@ class ServiceHistory extends React.Component {
             this.setState({ appointments: data.appointments });
         }
     }
+
+    async handleCancel(event) {
+        const id = event.target.value;
+        const response = await fetch(`http://localhost:8080/api/appointments/${id}/`, { method: "DELETE" })
+        console.log(response);
+        window.location.reload(false);
+    }
+
+    async handleFinished(event) {
+        const id = event.target.value
+        const data = { ...this.state };
+        data.status = true
+        const url = `http://localhost:8080/api/appointments/${id}/`
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+            const finishedStatus = await response.json();
+            console.log('status', finishedStatus)
+        }
+        window.location.reload(false);
+    }
+
+
     render() {
         let timeSettings = { timeZone: "UTC", year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" };
 
@@ -41,7 +75,7 @@ class ServiceHistory extends React.Component {
                         </thead>
                         <tbody>
 
-                        {this.state.appointments.filter(appointments => appointments.status === true).map(appointment => {
+                        {this.state.appointments.filter(appointments => appointments.status === false).map(appointment => {
                                 return (
                                     <tr key={appointment.id}>
                                         <td className="text-warning">{(appointment.vip_status ? "✅" : null)}</td>
@@ -51,7 +85,9 @@ class ServiceHistory extends React.Component {
                                         <td>{appointment.name}</td>
                                         <td>{appointment.reason}</td>
                                         <td>
-                                            <img className="center-block" width="100" src="https://c.tenor.com/yheo1GGu3FwAAAAC/rick-roll-rick-ashley.gif" />
+                                            <button onClick={this.handleCancel} type="submit" value={appointment.id} className="mx-1 btn btn-danger">Cancel</button>
+                                            <button onClick={this.handleFinished} type="button" value={appointment.id} className="btn btn-success">Finished</button>
+
                                         </td>
                                     </tr>
                                 );
@@ -60,14 +96,9 @@ class ServiceHistory extends React.Component {
                         </tbody>
                     </table>
                 </div>
-                <div className="container">
-                    <div className="visually-hidden">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
             </>
         )
     }
 }
 
-export default ServiceHistory;
+export default AppointmentsList;
