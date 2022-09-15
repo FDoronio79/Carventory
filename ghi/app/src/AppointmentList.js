@@ -26,9 +26,11 @@ class AppointmentsList extends React.Component {
         const id = event.target.value;
         const idResponse = await fetch(`http://localhost:8080/api/appointments/${id}/`, { method: "DELETE" })
         console.log(idResponse);
+        window.location.reload(false);
     }
 
-    async handleFinished(id) {
+    async handleFinished(event) {
+        const id = event.target.value
         const data = { ...this.state };
         data.status = true
         const url = `http://localhost:8080/api/appointments/${id}/`
@@ -42,8 +44,9 @@ class AppointmentsList extends React.Component {
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
             const finishedStatus = await response.json();
+            console.log('status', finishedStatus)
         }
-
+        window.location.reload(false);
     }
 
 
@@ -72,7 +75,7 @@ class AppointmentsList extends React.Component {
                         </thead>
                         <tbody>
 
-                            {this.state.appointments ? this.state.appointments.map(appointment => {
+                        {this.state.appointments.filter(appointments => appointments.status === false).map(appointment => {
                                 return (
                                     <tr key={appointment.id}>
                                         <td className="text-warning">{(appointment.vip_status ? "✅" : null)}</td>
@@ -88,7 +91,8 @@ class AppointmentsList extends React.Component {
                                         </td>
                                     </tr>
                                 );
-                            }) : null}
+                            })
+                            }
                         </tbody>
                     </table>
                 </div>
