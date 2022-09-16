@@ -10,7 +10,7 @@ Team:
 
 ## Service microservice
 
-The **Service microservice** backend utilizes 3 django models. The models being AutoMobileVO, Technician, and Appointment. The AutoMoibleVO model polls from the Inventory bounded context specifically from the Automobile model in Inventory to poll for a VIN.
+The **Service microservice** backend utilizes 3 django models. The models being **AutoMobileVO**, **Technician**, and **Appointment**. The AutoMoibleVO model polls from the Inventory bounded context specifically from the Automobile model in Inventory to poll for a VIN.
 
 A customer who has an appointment with a VIN that matches one in the Inventory database will be assigned VIP status which will indicate to provide the appointment with "VIP treatment".
 
