@@ -2,8 +2,9 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Jessica Lora - Sales microservice and Inventory bullet points 4-6
+* Filamer Doronio - Service microservice  and Inventory bullet points 1-3
+
 
 ## Design
 
