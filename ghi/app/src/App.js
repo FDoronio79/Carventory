@@ -10,12 +10,27 @@ import ManufacturerForm from './Inventory/ManufacturerForm';
 import VehicleList from './Inventory/VehicleList'
 
 
+
+
+
+
+
+
+
 function App(props) {
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
+
+
+
+
+
+
+
+
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={props.appointments}/>} />
           <Route path="/appointments/new" element={<AppointmentForm />} />
