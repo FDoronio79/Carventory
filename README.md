@@ -106,6 +106,7 @@ The **Automobile** Model has the following attributes:
   -  Model (This relates back to the VehicleModel model)
 
 On the front-end a user is able to create manufacturers, vehicle models, and automobiles. Users are also able to view the list of current manufacturers, vehicle models, and automobiles that is provided by CarCar.
+
 **------------------------------------------**
 ## Service microservice
 
