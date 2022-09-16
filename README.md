@@ -85,6 +85,7 @@ Sales information
 | List Sales Records  | GET       | http://localhost:8090/api/salesrecords/ |       |
 | List Available Automobiles  | GET       | http://localhost:8090/api/availablevins/ |       |
 | List Sales Records  | GET       | http://localhost:8090/api/salesrecord/{employeeNumber}/ |       |
+
 **------------------------------------------**
 ## Inventory
 
