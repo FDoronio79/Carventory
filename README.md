@@ -7,6 +7,30 @@ Team:
 
 
 ## Design
+The CarCar website/project is set up with three domains interacting with each other, these domains are:
+  - Inventory
+  - Services
+  - Sales
+
+## Inventory
+
+The Inventory domain maintains the inventory of CarCar. The backend portion contains 3 models which use ForeignKeys to interact with one another. These models are **Manufacturer**, **VehicleModel**, and **Automobile**.
+
+The **Manufacturer** model has the following attribute:
+  - Name
+
+The **VehicleModel** model has the following attributes:
+  - Name
+  - Picture URL (This will display a picture of the vehicle model on the front-end)
+  - Manufacturer (This relates back to the Manufacturer model)
+
+The **Automobile** Model has the following attributes:
+  - Color
+  - Year
+  - Vin (This is used by the Service and Sales microservices to poll for VINs in the current inventory)
+  -  Model (This relates back to the VehicleModel model)
+
+On the front-end a user is able to create manufacturers, vehicle models, and automobiles. Users are also able to view the list of current manufacturers, vehicle models, and automobiles that is provided by CarCar.
 
 ## Service microservice
 
@@ -19,7 +43,17 @@ A user is able to cancel an appointment which in turn deletes the appointment or
 On the **Service History Page** a user is able to look up a specific VIN number and view all the previous appointments that were completed for that specific VIN.
 
 Please view the picture below for more details:
-![Semantic description of image](/ghi/app/public/Service_Microservice_Planning.png)
+![Diagram](/ghi/app/public/Service_Microservice_Planning.png)
+
+### Screenshots of Services Website
+List of Appointments:
+![Create Appointment](/ghi/app/public/List_Appointments.png)
+
+Create Appointments:
+![Create Appointment](/ghi/app/public/Create_Appointment.png)
+
+Service History:
+![Create Appointment](/ghi/app/public/Service_History.png)
 
 ## Sales microservice
 
