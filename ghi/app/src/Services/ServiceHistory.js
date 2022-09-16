@@ -1,49 +1,69 @@
-import React from 'react';
+import React from "react";
 
 class ServiceHistory extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            vin: "",
-            status: "",
             appointments: [],
+            search: "",
         }
-
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    async componentDidMount() {
+
+    async handleSubmit(event) {
+        event.preventDefault()
         const url = "http://localhost:8080/api/appointments/";
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            this.setState({ appointments: data.appointments });
+            // this.setState(({appointments: data.appointments}))
+            console.log(data.appointments)
+
+            const test = data.appointments.filter((appointment) => {
+                return appointment.vin === this.state.search
+            })
+            this.setState({ appointments: test })
         }
+    }
+
+
+    handleChange(event) {
+        const value = event.target.value;
+        this.setState({ search: value })
     }
 
     render() {
         let timeSettings = { timeZone: "UTC", year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" };
-
         return (
             <>
-                <div className="my-3 containerw">
-                    <div className="input-group">
-                    </div>
-                </div>
                 <div>
+                    <form id="search-by-vin-form">
+                        <div className="input-group mb-3 mt-5">
+                            <input value={this.state.search} onChange={this.handleChange}
+                                type="text" className="form-control"
+                                placeholder="Enter VIN to search" id="search" name="search" />
+                            <button onClick={this.handleSubmit} className="input-group-text">Search by VIN</button>
+                        </div>
+                    </form>
+
                     <h1>Service Appointments</h1>
                     <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th>VIP</th>
                                 <th>VIN</th>
-                                <th>Customer name</th>
-                                <th>Date and time</th>
+                                <th>Customer Name</th>
+                                <th>Schedule</th>
                                 <th>Technician</th>
                                 <th>Reason</th>
-                                <th>Status</th>
+                                <th>status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.appointments.filter(appointments => appointments.status === true).map(appointment => {
+                            {this.state.appointments.map(appointment => {
+
+
                                 return (
                                     <tr key={appointment.id}>
                                         <td className="text-warning">{(appointment.vip_status ? "✅" : null)}</td>
@@ -56,15 +76,14 @@ class ServiceHistory extends React.Component {
                                             <img className="center-block" width="100" src="https://c.tenor.com/yheo1GGu3FwAAAAC/rick-roll-rick-ashley.gif" />
                                         </td>
                                     </tr>
-                                );
-                            })
-                            }
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>
                 <div className="container">
-                    <div >
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?&start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div className="">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </>
