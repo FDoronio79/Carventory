@@ -8,3 +8,63 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function loadSalesRecords() {
+  const response = await fetch ('http://localhost:8090/api/salesrecords/')
+
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App salesRecords={data.salesRecords} />
+      </React.StrictMode>
+    );
+  } else {
+    console.error(response)
+  }
+}
+loadSalesRecords();
+
+
+
+async function loadAutomobiles() {
+  const response = await fetch ('http://localhost:8100/api/automobiles/')
+
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App automobiles={data.autos} />
+      </React.StrictMode>
+    );
+  } else {
+    console.error(response)
+  }
+}
+loadAutomobiles();
