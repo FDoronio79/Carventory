@@ -21,14 +21,16 @@ The CarCar website/project is set up with three domains interacting with each ot
   - [ ] `docker volume create beta-data`
   - [ ] `docker-compose build`
   - [ ] `docker-compose up`
-
-Ensure that all Docker Containers are running successfully before proceeding
+----------------------------
+**Check that all Docker containers are running:**
 ![Docker Container](/ghi/app/public/Docker.png)
 
+----------------------------
 **To view project in web browser:**
 http://localhost:3000/
 ![CarCar](/ghi/app/public/CarCar.png)
 
+----------------------------
 **To test APIs on API client (Insomnia)**
 
 Manufacturer information
@@ -62,12 +64,12 @@ Services information
 | Actions      | Method | URL  | Required JSON |
 | :---        | :----       | :---          |  :---     |
 | List Appointments   | GET      | http://localhost:8080/api/appointments/ |       |
-| Create an Appointment | POST        | http://localhost:8080/api/appointments/    | `NEED JSON`  |
+| Create an Appointment | POST        | http://localhost:8080/api/appointments/    | `{"vin": "Create Vin", "customer_name": "Jessica Nora", "reason": "Car broke", "technician": <number>}`  |
 | Get a specific Appointment | GET       | http://localhost:8080/api/appointments/<int:pk>/ |  *Enter id/pk in URL     |
-| Update a specific Appointment  | PUT        | http://localhost:8080/api/appointments/<int:pk>/   |   `NEED JSON`    |
+| Update a specific Appointment  | PUT        | http://localhost:8080/api/appointments/<int:pk>/   |  `{"status": boolean}`     |
 | Delete a specific Appointment  | DELETE       | http://localhost:8080/api/salesrecords/ |       |
 | List Technicians  | GET       | http://localhost:8080/api/technicians/|       |
-| Create a Technician  | POST       | http://localhost:8080/api/technicians/ |  `NEED JSON`    |
+| Create a Technician  | POST       | http://localhost:8080/api/technicians/ |  `{"name": "Jenny Lora", "employee_number": "485745"}`    |
 | Get a specific Technician  | GET       | http://localhost:8080/api/technicians/<int:pk>/ |   *Enter id/pk in URL      |
 | Get a specific Automobile(Vin)  | GET       | http://localhost:8080/api/appointments/<str:pk>/|   *Enter id/pk in URL      |
 ---------------
