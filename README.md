@@ -31,10 +31,11 @@ http://localhost:3000/
 ![CarCar](/ghi/app/public/CarCar.png)
 
 ----------------------------
-**Preventing errors when creating data:**
+==**Preventing errors when creating data:**==
 
 -An error occurs if you have two Sales Persons or Customers with the same name.
--An error occurs for any numerical IDs if you type a really long number.
+
+-An error occurs for any numerical IDs if you type a really long number. Try only four digits.
 
 ----------------------------
 **To test APIs on API client (Insomnia)**
