@@ -133,7 +133,7 @@ List of Appointments:
 ![Create Appointment](/ghi/app/src/images/Appointments.png)
 
 Create Appointments:
-![Create Appointment](/ghi/app//src/images/New_appointment.png)
+![Create Appointment](/ghi/app/src/images/New_appointment.png)
 
 Service History:
 ![Create Appointment](/ghi/app//src/images/Service_history.png)
