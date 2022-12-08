@@ -28,7 +28,7 @@ The CarCar website/project is set up with three domains interacting with each ot
 ----------------------------
 **To view project in web browser:**
 http://localhost:3000/
-![CarCar](/ghi/app/public/CarCar.png)
+![Carventory](/ghi/app/src/images/Carventory.gif)
 
 ----------------------------
 ==**Preventing errors when creating data:**==
