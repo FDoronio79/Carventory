@@ -1,4 +1,5 @@
-import React from 'react';
+import  React  from 'react';
+
 
 class AppointmentsList extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class AppointmentsList extends React.Component {
 
     // Loads everything into a list on the page
     async componentDidMount() {
-        const url = "http://localhost:8080/api/appointments/";
+        const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -24,7 +25,7 @@ class AppointmentsList extends React.Component {
 
     async handleCancel(event) {
         const id = event.target.value;
-        const response = await fetch(`http://localhost:8080/api/appointments/${id}/`, { method: "DELETE" })
+        const response = await fetch(`${process.env.REACT_APP_SERVICE_API}/api/appointments/${id}/`, { method: "DELETE" })
         console.log(response);
         window.location.reload(false);
     }
@@ -33,7 +34,7 @@ class AppointmentsList extends React.Component {
         const id = event.target.value
         const data = { ...this.state };
         data.status = true
-        const url = `http://localhost:8080/api/appointments/${id}/`
+        const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/${id}/`
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(data),

@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import logo from './images/logo.png'
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">CarCar</NavLink>
+        <NavLink className="navbar-brand" to="/">Carventory</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -26,12 +27,13 @@ function Nav() {
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Sales Record
+                  Sales
                 </a>
                 <ul className="dropdown-menu">
                   <li><NavLink className="dropdown-item" to="/sales/salesrecords/">Sales Records</NavLink></li>
                   <li><NavLink className="dropdown-item" to="/sales/newsalesrecord/">New Sales Record</NavLink></li>
                   <li><NavLink className="dropdown-item" to="/sales/salespersonrecord/">Sales Record of Sales Person</NavLink></li>
+                  <NavLink className="dropdown-item" to="/sales/newcustomer/">New Customer</NavLink>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -61,14 +63,16 @@ function Nav() {
                   <li><NavLink className="dropdown-item" to="/inventory/newvehiclemodel/">New Vehicle Model</NavLink></li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/technicians/new">New Technician</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/sales/newsalesperson/">New Sales Person</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/sales/newcustomer/">New Customer</NavLink>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Employees
+                </a>
+                <ul className="dropdown-menu">
+                  <li><NavLink className="dropdown-item" aria-current="page" to="/technicians">Technicians</NavLink></li>
+                  <li><NavLink className="dropdown-item" aria-current="page" to="/technicians/new">New Technician</NavLink></li>
+                  <li><NavLink className="dropdown-item" to="/manufacturers/new">New Manufacturers</NavLink></li>
+                  <NavLink className="dropdown-item" to="/sales/newsalesperson/">New Sales Person</NavLink>
+                </ul>
               </li>
             </ul>
           </div>

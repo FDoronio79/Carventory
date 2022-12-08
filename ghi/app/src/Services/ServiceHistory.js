@@ -13,7 +13,7 @@ class ServiceHistory extends React.Component {
 
     async handleSubmit(event) {
         event.preventDefault()
-        const url = "http://localhost:8080/api/appointments/";
+        const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -82,9 +82,9 @@ class ServiceHistory extends React.Component {
                     </table>
                 </div>
                 <div className="container">
-                    <div className="invisible">
+                    {/* <div className="invisible">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                    </div> */}
                 </div>
             </>
         )

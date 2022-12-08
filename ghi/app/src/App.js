@@ -8,13 +8,6 @@ import AppointmentHistory from './Services/ServiceHistory';
 import ManufacturersList from './Inventory/ManufactuererList';
 import ManufacturerForm from './Inventory/ManufacturerForm';
 import VehicleList from './Inventory/VehicleList'
-
-
-
-
-
-
-
 import SalesPersonForm from './sales/SalesPersonForm' 
 import CustomerForm from './sales/CustomerForm' 
 import SalesRecordForm from './sales/SalesRecordForm'
@@ -23,9 +16,12 @@ import VehicleForm from './Inventory/VehicleForm'
 import AutomobileForm from './Inventory/AutomobileForm'
 import AutomobileList from './Inventory/AutomobileList'
 import SalesPersonRecord from './sales/SalesPersonRecord'
+import TechniciansList from './Services/TechnicianList';
 
 function App(props) {
   return (
+    <>
+    
     <BrowserRouter>
       <Nav />
       <div className="container">
@@ -42,6 +38,7 @@ function App(props) {
           <Route path="/appointments" element={<AppointmentsList appointments={props.appointments}/>} />
           <Route path="/appointments/new" element={<AppointmentForm />} />
           <Route path="/appointments/history" element={<AppointmentHistory appointments={props.appointments}/>} />
+          <Route path="/technicians" element={<TechniciansList />} />
           <Route path="/technicians/new" element={<TechnicianForm />} />
           <Route path="/manufacturers" element={<ManufacturersList />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
@@ -49,6 +46,7 @@ function App(props) {
         </Routes>
       </div>
     </BrowserRouter>
+    </>
   );
 }
 

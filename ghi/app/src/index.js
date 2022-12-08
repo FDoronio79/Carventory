@@ -10,7 +10,7 @@ root.render(
 );
 
 async function loadAppointments(){
-  const response = await fetch('http://localhost:8080/api/appointments/');
+  const response = await fetch(`${process.env.REACT_APP_SERVICE_API}/api/appointments/`);
   if (response.ok) {
     const data = await response.json();
     root.render(

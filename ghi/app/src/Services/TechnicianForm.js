@@ -20,7 +20,7 @@ class TechnicianForm extends React.Component {
 
     handleChangeEmployeeNum(event) {
         const value = event.target.value;
-        this.setState({employee_number: value})
+        this.setState({employee_number: value}) 
     }
 
     async handleSubmit(event) {
@@ -28,7 +28,7 @@ class TechnicianForm extends React.Component {
         const data = {...this.state};
         console.log(data);
 
-        const technicianUrl = "http://localhost:8080/api/technicians/";
+        const technicianUrl = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),

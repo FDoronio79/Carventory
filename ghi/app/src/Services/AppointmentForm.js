@@ -46,7 +46,7 @@ class AppointmentForm extends React.Component {
     }
 
     async componentDidMount() {
-        const url = "http://localhost:8080/api/technicians/";
+        const url = `${process.env.REACT_APP_SERVICE_API}api/technicians/`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
@@ -60,7 +60,7 @@ class AppointmentForm extends React.Component {
         console.log("data:", data);
         delete data.technicians;
 
-        const appointmentUrl = "http://localhost:8080/api/appointments/";
+        const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -85,7 +85,7 @@ class AppointmentForm extends React.Component {
 
     render() {
         return (
-            <div className="my-5 containerw">
+            <div className="my-5 container">
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
                         <h2 className="text-center">Create Appointment</h2>

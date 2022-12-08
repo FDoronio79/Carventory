@@ -55,6 +55,7 @@ Create Appointments:
 Service History:
 ![Create Appointment](/ghi/app/public/Service_History.png)
 
+
 ## Sales microservice
 
 Explain your models and integration with the inventory
