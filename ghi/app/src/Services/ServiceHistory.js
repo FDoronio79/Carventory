@@ -73,7 +73,7 @@ class ServiceHistory extends React.Component {
                                         <td>{appointment.name}</td>
                                         <td>{appointment.reason}</td>
                                         <td>
-                                            <img className="center-block" width="100" src="https://c.tenor.com/yheo1GGu3FwAAAAC/rick-roll-rick-ashley.gif" />
+                                            ✅
                                         </td>
                                     </tr>
                                 )

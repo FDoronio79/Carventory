@@ -130,13 +130,13 @@ Please view the picture below for more details:
 
 ### Screenshots of Services Website
 List of Appointments:
-![Create Appointment](/ghi/app/public/List_Appointments.png)
+![Create Appointment](/ghi/app/src/images/Appointments.png)
 
 Create Appointments:
-![Create Appointment](/ghi/app/public/Create_Appointment.png)
+![Create Appointment](/ghi/app//src/images/New_appointment.png)
 
 Service History:
-![Create Appointment](/ghi/app/public/Service_History.png)
+![Create Appointment](/ghi/app//src/images/Service_history.png)
 **------------------------------------------**
 ## Sales microservice
 
@@ -152,16 +152,16 @@ Please view the picture below for more details:
 
 ### Screenshots of Sales Website
 Create a Sales Person:
-![Create Appointment](/ghi/app/public/SalesPerson.png)
+![Create Appointment](/ghi/app/src/images/New_sales_person.png)
 
 Create a Customer:
-![Create Appointment](/ghi/app/public/Customer.png)
+![Create Appointment](/ghi/app/src/images/New_customer_form.png)
 
 Create a Sales Record:
-![Create Appointment](/ghi/app/public/salesRecord.png)
+![Create Appointment](/ghi/app/src/images/New_sale.png)
 
 List Sales Records:
-![Create Appointment](/ghi/app/public/historySalesRecord.png)
+![Create Appointment](/ghi/app/src/images/Sales_records.png)
 
 Show Sales Records for Specific Sales Person:
-![Create Appointment](/ghi/app/public/SalesPersonRecord.png)
+![Create Appointment](/ghi/app/src/images/Sales_person_record.png)
