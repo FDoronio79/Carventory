@@ -17,8 +17,24 @@ import AutomobileForm from './Inventory/AutomobileForm'
 import AutomobileList from './Inventory/AutomobileList'
 import SalesPersonRecord from './sales/SalesPersonRecord'
 import TechniciansList from './Services/TechnicianList';
+import {useState, useEffect} from 'react'
 
 function App(props) {
+  const [appointments, setApts] = useState([]);
+
+  const getApts = async () => {
+    const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
+    const response = await fetch(url);
+    if (response.ok) {
+        const data = await response.json();
+        setApts(data.appointments);
+    }
+  }
+
+  useEffect(() => {
+    getApts()
+  }, [])
+  
   return (
     <>
     
@@ -35,7 +51,7 @@ function App(props) {
           <Route path="sales/newsalesperson/" element={<SalesPersonForm />} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
           <Route path="/" element={<MainPage />} />
-          <Route path="/appointments" element={<AppointmentsList appointments={props.appointments}/>} />
+          <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
           <Route path="/appointments/new" element={<AppointmentForm />} />
           <Route path="/appointments/history" element={<AppointmentHistory appointments={props.appointments}/>} />
           <Route path="/technicians" element={<TechniciansList />} />
