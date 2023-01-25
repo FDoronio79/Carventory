@@ -65,7 +65,7 @@ function App(props) {
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
           <Route path="/appointments/new" element={<AppointmentForm technicians={technicians}/>} />
           <Route path="/appointments/history" element={<AppointmentHistory appointments={appointments}/>} />
-          <Route path="/technicians" element={<TechniciansList />} />
+          <Route path="/technicians" element={<TechniciansList technicians={technicians} />} />
           <Route path="/technicians/new" element={<TechnicianForm />} />
           <Route path="/manufacturers" element={<ManufacturersList />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
