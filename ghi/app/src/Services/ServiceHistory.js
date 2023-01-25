@@ -10,11 +10,10 @@ export default function ServiceHistory({appointments, getApts}) {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            // this.setState(({appointments: data.appointments}))
             console.log(data.appointments)
 
             const test = data.appointments.filter((appointment) => {
-                return appointment.vin === this.state.search
+                return appointment.vin === search
             })
             setAppointments(test)
         }

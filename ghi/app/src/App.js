@@ -19,9 +19,10 @@ import SalesPersonRecord from './sales/SalesPersonRecord'
 import TechniciansList from './Services/TechnicianList';
 import {useState, useEffect} from 'react'
 
-function App(props) {
+function App() {
   const [appointments, setApts] = useState([]);
   const [technicians, setTechs] = useState([]);
+  const [salesPersons, setSP] = useState([]);
 
   const getApts = async () => {
     const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
@@ -39,11 +40,19 @@ function App(props) {
         setTechs(data.technicians);
     }
   }
-  console.log('techs', technicians)
+  const getSP = async () => {
+    const url = 'http://localhost:8090/api/salespersons/';
+    const response = await fetch(url);
+    if (response.ok) {
+        let data = await response.json();
+        setSP(data.salesPersons);
+    }
+  }
+  console.log('sp', salesPersons)
 
 
   useEffect(() => {
-    getApts(); getTechs();
+    getApts(); getTechs(); getSP();
   }, [])
 
   return (
@@ -53,13 +62,12 @@ function App(props) {
       <Nav />
       <div className="container">
         <Routes>
-          <Route path="sales/salespersonrecord/" element={<SalesPersonRecord />} />
+          <Route path="sales/salespersonrecord/" element={<SalesPersonRecord salesPersons={salesPersons}/>} />
           <Route path="inventory/automobiles/" element={<AutomobileList />} />
           <Route path="inventory/newautomobile/" element={<AutomobileForm />} />
           <Route path="inventory/newvehiclemodel/" element={<VehicleForm />} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList />} />
-          <Route path="sales/newsalesrecord/" element={<SalesRecordForm />} />
-          <Route path="sales/newsalesperson/" element={<SalesPersonForm />} />
+          <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} />} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
