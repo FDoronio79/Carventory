@@ -23,6 +23,8 @@ function App() {
   const [appointments, setApts] = useState([]);
   const [technicians, setTechs] = useState([]);
   const [salesPersons, setSP] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [vins, setVins] = useState([]);
 
   const getApts = async () => {
     const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
@@ -48,11 +50,26 @@ function App() {
         setSP(data.salesPersons);
     }
   }
-  console.log('sp', salesPersons)
+  const getCustomers = async () => {
+    const url = 'http://localhost:8090/api/customers/';
+    const response = await fetch(url);
+    if (response.ok) {
+        let data = await response.json();
+        setCustomers(data.customers);
+    }
+  }
+  const getVins = async () => {
+    const url = 'http://localhost:8090/api/availablevins/';
+    const response = await fetch(url);
+    if (response.ok) {
+        let data = await response.json();
+        setVins(data.availbleVins);
+    }
+  }
 
 
   useEffect(() => {
-    getApts(); getTechs(); getSP();
+    getApts(); getTechs(); getSP(); getCustomers(); getVins();
   }, [])
 
   return (
@@ -67,7 +84,7 @@ function App() {
           <Route path="inventory/newautomobile/" element={<AutomobileForm />} />
           <Route path="inventory/newvehiclemodel/" element={<VehicleForm />} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList />} />
-          <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} />} />
+          <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} />} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
