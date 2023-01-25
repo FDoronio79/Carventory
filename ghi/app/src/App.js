@@ -21,6 +21,7 @@ import {useState, useEffect} from 'react'
 
 function App(props) {
   const [appointments, setApts] = useState([]);
+  const [technicians, setTechs] = useState([]);
 
   const getApts = async () => {
     const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
@@ -30,11 +31,21 @@ function App(props) {
         setApts(data.appointments);
     }
   }
+  const getTechs = async () => {
+    const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
+    const response = await fetch(url);
+    if (response.ok) {
+        const data = await response.json();
+        setTechs(data.technicians);
+    }
+  }
+  console.log('techs', technicians)
+
 
   useEffect(() => {
-    getApts()
+    getApts(); getTechs();
   }, [])
-  
+
   return (
     <>
     
@@ -52,8 +63,8 @@ function App(props) {
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
-          <Route path="/appointments/new" element={<AppointmentForm />} />
-          <Route path="/appointments/history" element={<AppointmentHistory appointments={props.appointments}/>} />
+          <Route path="/appointments/new" element={<AppointmentForm technicians={technicians}/>} />
+          <Route path="/appointments/history" element={<AppointmentHistory appointments={appointments}/>} />
           <Route path="/technicians" element={<TechniciansList />} />
           <Route path="/technicians/new" element={<TechnicianForm />} />
           <Route path="/manufacturers" element={<ManufacturersList />} />

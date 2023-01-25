@@ -9,21 +9,21 @@ root.render(
   </React.StrictMode>
 );
 
-async function loadAppointments(){
-  const response = await fetch(`${process.env.REACT_APP_SERVICE_API}/api/appointments/`);
-  if (response.ok) {
-    const data = await response.json();
-    root.render(
-      <React.StrictMode>
-        <App appointments = {data.appointments} />
-      </React.StrictMode>
-    );
-  } else { 
-    console.error(response);
-  }
-}
+// async function loadAppointments(){
+//   const response = await fetch(`${process.env.REACT_APP_SERVICE_API}/api/appointments/`);
+//   if (response.ok) {
+//     const data = await response.json();
+//     root.render(
+//       <React.StrictMode>
+//         <App appointments = {data.appointments} />
+//       </React.StrictMode>
+//     );
+//   } else { 
+//     console.error(response);
+//   }
+// }
   
-loadAppointments();
+// loadAppointments();
 
 
 
