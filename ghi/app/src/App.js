@@ -27,6 +27,8 @@ function App() {
   const [vins, setVins] = useState([]);
   const [salesRecords, setSR] = useState([]);
   const [models, setModels] = useState([]);
+  const [manufacturers, setManufacturers] = useState([]);
+  const [automobiles, setAuto] = useState([]);
 
   const getApts = async () => {
     const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
@@ -84,10 +86,33 @@ function App() {
         setModels(data.models);
   }
 }
+  const getManufacturers = async () => {
+    const url = 'http://localhost:8100/api/manufacturers/';
+    const response = await fetch(url);
+    if (response.ok) {
+        let data = await response.json();
+        setManufacturers(data.manufacturers);
+    }
+}
+  const getAutos = async () => {
+    const url = "http://localhost:8100/api/automobiles/";
+    const response = await fetch(url);
+    if (response.ok) {
+        const data = await response.json();
+        setAuto(data.autos);
+    }
+}
 
-console.log(models)
   useEffect(() => {
-    getApts(); getTechs(); getSP(); getCustomers(); getVins(); getSR(); getModels();
+    getApts(); 
+    getTechs(); 
+    getSP(); 
+    getCustomers(); 
+    getVins(); 
+    getSR(); 
+    getModels();
+    getManufacturers();
+    getAutos();
   }, [])
 
   return (
@@ -98,9 +123,9 @@ console.log(models)
       <div className="container">
         <Routes>
           <Route path="sales/salespersonrecord/" element={<SalesPersonRecord salesPersons={salesPersons}/>} />
-          <Route path="inventory/automobiles/" element={<AutomobileList />} />
+          <Route path="inventory/automobiles/" element={<AutomobileList automobiles={automobiles}/>} />
           <Route path="inventory/newautomobile/" element={<AutomobileForm models={models}/>} />
-          <Route path="inventory/newvehiclemodel/" element={<VehicleForm />} />
+          <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers}/>} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList salesRecords={salesRecords} />} />
           <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} />} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
@@ -110,9 +135,9 @@ console.log(models)
           <Route path="/appointments/history" element={<AppointmentHistory appointments={appointments}/>} />
           <Route path="/technicians" element={<TechniciansList technicians={technicians} />} />
           <Route path="/technicians/new" element={<TechnicianForm />} />
-          <Route path="/manufacturers" element={<ManufacturersList />} />
+          <Route path="/manufacturers" element={<ManufacturersList manufacturers={manufacturers}/>} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
-          <Route path="/vehicles" element={<VehicleList />} />
+          <Route path="/vehicles" element={<VehicleList models={models}/>} />
         </Routes>
       </div>
     </BrowserRouter>
