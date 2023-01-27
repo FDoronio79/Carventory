@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+
 export default function SalesPersonRecord({salesPersons}) {
     const [salesRecords, setSR] = useState([]);
     const [salesPerson, ] = useState('');

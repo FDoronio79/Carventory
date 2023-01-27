@@ -6,6 +6,8 @@ import employee from './images/employees.jpeg'
 import sales from './images/sales.jpg'
 import service from './images/service.jpg'
 import logo from './images/logo.png'
+import broken_car from './images/broken_car.jpg'
+import ReactCompareImage from 'react-compare-image'
 
 
 function MainPage() {
@@ -17,8 +19,8 @@ function MainPage() {
           The premiere solution for automobile dealership
           management!
         </p>
-      </div>
-      
+        </div>
+      <ReactCompareImage leftImage={broken_car} rightImage={inventory} />
         <div className="container">
           <div className="row">
             <div className="col">

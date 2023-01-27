@@ -18,6 +18,7 @@ import AutomobileList from './Inventory/AutomobileList'
 import SalesPersonRecord from './sales/SalesPersonRecord'
 import TechniciansList from './Services/TechnicianList';
 import {useState, useEffect} from 'react'
+import axios from 'axios'
 
 function App() {
   const [appointments, setApts] = useState([]);
@@ -31,36 +32,45 @@ function App() {
   const [automobiles, setAuto] = useState([]);
 
   const getApts = async () => {
-    const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
-    const response = await fetch(url);
-    if (response.ok) {
-        const data = await response.json();
-        setApts(data.appointments);
-    }
+    // const url = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
+    // const response = await fetch(url);
+    // if (response.ok) {
+    //     const data = await response.json();
+    //     setApts(data.appointments);
+    // }
+    axios.get(`${process.env.REACT_APP_SERVICE_API}/api/appointments/`)
+    .then((response) => {setApts(response.data.appointments)})
   }
+  console.log('techs:', technicians)
   const getTechs = async () => {
-    const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
-    const response = await fetch(url);
-    if (response.ok) {
-        const data = await response.json();
-        setTechs(data.technicians);
-    }
+    // const url = `${process.env.REACT_APP_SERVICE_API}/api/technicians/`;
+    // const response = await fetch(url);
+    // if (response.ok) {
+    //     const data = await response.json();
+    //     setTechs(data.technicians);
+    // }
+    axios.get(`${process.env.REACT_APP_SERVICE_API}/api/technicians/`)
+    .then((response) => {setApts(response.data.technicians)})
   }
   const getSP = async () => {
-    const url = 'http://localhost:8090/api/salespersons/';
-    const response = await fetch(url);
-    if (response.ok) {
-        let data = await response.json();
-        setSP(data.salesPersons);
-    }
+    // const url = 'http://localhost:8090/api/salespersons/';
+    // const response = await fetch(url);
+    // if (response.ok) {
+    //     let data = await response.json();
+    //     setSP(data.salesPersons);
+    // }
+    axios.get('http://localhost:8090/api/salespersons/')
+    .then((response) => {setApts(response.data.technicians)})
   }
   const getCustomers = async () => {
-    const url = 'http://localhost:8090/api/customers/';
-    const response = await fetch(url);
-    if (response.ok) {
-        let data = await response.json();
-        setCustomers(data.customers);
-    }
+    // const url = 'http://localhost:8090/api/customers/';
+    // const response = await fetch(url);
+    // if (response.ok) {
+    //     let data = await response.json();
+    //     setCustomers(data.customers);
+    // }
+    axios.get('http://localhost:8090/api/salespersons/')
+    .then((response) => {setApts(response.data.technicians)})
   }
   const getVins = async () => {
     const url = 'http://localhost:8090/api/availablevins/';
