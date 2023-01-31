@@ -20,7 +20,14 @@ function MainPage() {
           management!
         </p>
         </div>
-      <ReactCompareImage leftImage={broken_car} rightImage={inventory} />
+        <div>
+        <p>Swipe to see your next car! </p>
+      <ReactCompareImage 
+      leftImage={broken_car} 
+      rightImage={inventory} 
+      sliderPositionPercentage="0.90"
+      />
+      </div>
         <div className="container">
           <div className="row">
             <div className="col">
