@@ -145,7 +145,7 @@ function App() {
           <Route path="sales/salespersonrecord/" element={<SalesPersonRecord salesPersons={salesPersons}/>} />
           <Route path="inventory/automobiles/" element={<AutomobileList automobiles={automobiles}/>} />
           <Route path="inventory/newautomobile/" element={<AutomobileForm models={models} getAutos={getAutos}/>} />
-          <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
+          <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers} getModels={getModels}/>} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList salesRecords={salesRecords} />} />
           <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} getSR={getSR}/>} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />

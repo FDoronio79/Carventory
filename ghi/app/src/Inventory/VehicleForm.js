@@ -1,6 +1,7 @@
 import {useState} from 'react';
+import axios from 'axios'
 
-export default function VehicleForm({manufacturers}) {
+export default function VehicleForm({manufacturers, getModels}) {
     const [name, setName] = useState('');
     const [picture_url, setPic] = useState('');
     const [manufacturer_id, setManufacturers] = useState('');
@@ -29,22 +30,30 @@ export default function VehicleForm({manufacturers}) {
         console.log(data);    
 
         const vehicleModelUrl = 'http://localhost:8100/api/models/';
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-            'Content-Type': 'application/json',
-            },
-        };
-        const response = await fetch(vehicleModelUrl, fetchConfig);
-        console.log("this is the response", response)
-        if (response.ok) {
-            const newVehicleModel = await response.json();
-            console.log(newVehicleModel);
+        axios.post(vehicleModelUrl, data)
+        .then ((response) => {
+            getModels();
             setName('');
             setPic('');
             setManufacturers('');
-            }
+            console.log(response)
+        })
+        // const fetchConfig = {
+        //     method: "post",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     },
+        // };
+        // const response = await fetch(vehicleModelUrl, fetchConfig);
+        // console.log("this is the response", response)
+        // if (response.ok) {
+        //     const newVehicleModel = await response.json();
+        //     console.log(newVehicleModel);
+        //     setName('');
+        //     setPic('');
+        //     setManufacturers('');
+        //     }
         }
     return (
             <div className="row">
