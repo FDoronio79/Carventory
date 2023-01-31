@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export default function TechnicianForm() {
+export default function TechnicianForm({getTechs}) {
     const [name, setName] = useState('');
     const [employee_number, setEmpNum] = useState('');
 
@@ -19,19 +19,25 @@ export default function TechnicianForm() {
         const data = {};
         data.name = name;
         data.employee_number = employee_number;
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-type": "application/json",
-            },
-        };
-        const response = await fetch(technicianUrl, fetchConfig);
-        if (response.ok) {
-            const newTechnician = await response.json();
+        axios.post(technicianUrl, data)
+        .then((response) => {
+            getTechs();
             setName('');
             setEmpNum('');
-        }
+        })
+        // const fetchConfig = {
+        //     method: "post",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         "Content-type": "application/json",
+        //     },
+        // };
+        // const response = await fetch(technicianUrl, fetchConfig);
+        // if (response.ok) {
+        //     const newTechnician = await response.json();
+        //     setName('');
+        //     setEmpNum('');
+        // }
     }
     return (
         <><div className="my-5 container">
