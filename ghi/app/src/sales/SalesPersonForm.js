@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios'
 
-export default function SalesPersonForm() {
+export default function SalesPersonForm({getSP}) {
     const [name, setName] = useState('');
     const [employeeNumber, setEmpNum] = useState('');
 
@@ -18,22 +19,28 @@ export default function SalesPersonForm() {
         const data = {};
         data.name = name;
         data.employeeNumber = employeeNumber;
-        const CustomerUrl = 'http://localhost:8090/api/salespersons/';
-            const fetchConfig = {
-                method: "post",
-                body: JSON.stringify(data),
-                headers: {
-                'Content-Type': 'application/json',
-                },
-            };
-            const response = await fetch(CustomerUrl, fetchConfig);
-            console.log("this is the response", response)
-            if (response.ok) {
-                const newCustomer = await response.json();
-                console.log(newCustomer);
-                setName('');
-                setEmpNum('');
-        }
+        const customerUrl = 'http://localhost:8090/api/salespersons/';
+        axios.post(customerUrl, data)
+        .then ((response) => {
+            getSP();
+            setName('');
+            setEmpNum('');
+        })
+        //     const fetchConfig = {
+        //         method: "post",
+        //         body: JSON.stringify(data),
+        //         headers: {
+        //         'Content-Type': 'application/json',
+        //         },
+        //     };
+        //     const response = await fetch(CustomerUrl, fetchConfig);
+        //     console.log("this is the response", response)
+        //     if (response.ok) {
+        //         const newCustomer = await response.json();
+        //         console.log(newCustomer);
+        //         setName('');
+        //         setEmpNum('');
+        // }
     }
     return (
             <div className="row">

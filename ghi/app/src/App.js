@@ -143,6 +143,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="sales/salespersonrecord/" element={<SalesPersonRecord salesPersons={salesPersons}/>} />
+          <Route path="sales/new-sales-person/" element={<SalesPersonForm getSP={getSP}/>} />
           <Route path="inventory/automobiles/" element={<AutomobileList automobiles={automobiles}/>} />
           <Route path="inventory/newautomobile/" element={<AutomobileForm models={models} getAutos={getAutos}/>} />
           <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers} getModels={getModels}/>} />
