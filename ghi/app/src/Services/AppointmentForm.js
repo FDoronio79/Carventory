@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios'
 
-export default function AppointmentForm({technicians}) {
+export default function AppointmentForm({technicians, getApts}) {
     const [vin, setVin] = useState('');
     const [customer_name, setCustomerName] = useState('');
     const [date_time, setDateTime] = useState('');
@@ -38,21 +39,30 @@ export default function AppointmentForm({technicians}) {
         data.reason = reason;
 
         const appointmentUrl = `${process.env.REACT_APP_SERVICE_API}/api/appointments/`;
-        const fetchConfig = {
-            method: 'post',
-            body: JSON.stringify(data),
-            headers: {'Content-type': 'application/jason'}
-        };
-        const response = await fetch(appointmentUrl, fetchConfig);
-        if(response.ok) {
-            const newAppointment = await response.json()
-            console.log(newAppointment)
+        axios.post(appointmentUrl, data)
+        .then((resposnse) => {
+            getApts();
             setVin('');
             setDateTime('');
             setCustomerName('');
             setTechnician('');
             setReason('');
-        }
+        })
+        // const fetchConfig = {
+        //     method: 'post',
+        //     body: JSON.stringify(data),
+        //     headers: {'Content-type': 'application/jason'}
+        // };
+        // const response = await fetch(appointmentUrl, fetchConfig);
+        // if(response.ok) {
+        //     const newAppointment = await response.json()
+        //     console.log(newAppointment)
+        //     setVin('');
+        //     setDateTime('');
+        //     setCustomerName('');
+        //     setTechnician('');
+        //     setReason('');
+        // }
     }
     return (
         <div className="my-5 container">
