@@ -1,6 +1,7 @@
 import {useState} from "react";
+import axios from 'axios'
 
-export default function ManufacturerForm() {
+export default function ManufacturerForm({getManufacturers}) {
     const [name, setName] = useState('');
 
     const handleNameChange = (event) => {
@@ -14,20 +15,26 @@ export default function ManufacturerForm() {
         data.name = name
 
         const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-
-        const response = await fetch(manufacturerUrl, fetchConfig);
-        if (response.ok) {
-            const newManufacturerUrl = await response.json();
-            console.log(newManufacturerUrl);
+        axios.post(manufacturerUrl, data)
+        .then ((response) => {
             setName('');
-        }
+            getManufacturers();
+            console.log(response)
+        })
+        // const fetchConfig = {
+        //     method: "post",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        // };
+
+        // const response = await fetch(manufacturerUrl, fetchConfig);
+        // if (response.ok) {
+        //     const newManufacturerUrl = await response.json();
+        //     console.log(newManufacturerUrl);
+        //     setName('');
+        // }
     }  
     return (
         <div className="row">

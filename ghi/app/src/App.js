@@ -144,19 +144,19 @@ function App() {
         <Routes>
           <Route path="sales/salespersonrecord/" element={<SalesPersonRecord salesPersons={salesPersons}/>} />
           <Route path="inventory/automobiles/" element={<AutomobileList automobiles={automobiles}/>} />
-          <Route path="inventory/newautomobile/" element={<AutomobileForm models={models}/>} />
-          <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers}/>} />
+          <Route path="inventory/newautomobile/" element={<AutomobileForm models={models} getAutos={getAutos}/>} />
+          <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList salesRecords={salesRecords} />} />
-          <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} />} />
+          <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} getSR={getSR}/>} />
           <Route path="sales/newcustomer/" element={<CustomerForm />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
-          <Route path="/appointments/new" element={<AppointmentForm technicians={technicians}/>} />
+          <Route path="/appointments/new" element={<AppointmentForm technicians={technicians} getApts={getApts}/>} />
           <Route path="/appointments/history" element={<AppointmentHistory appointments={appointments}/>} />
           <Route path="/technicians" element={<TechniciansList technicians={technicians} />} />
-          <Route path="/technicians/new" element={<TechnicianForm />} />
+          <Route path="/technicians/new" element={<TechnicianForm getTechs={getTechs}/>} />
           <Route path="/manufacturers" element={<ManufacturersList manufacturers={manufacturers}/>} />
-          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+          <Route path="/manufacturers/new" element={<ManufacturerForm getManufacturers={getManufacturers}/>} />
           <Route path="/vehicles" element={<VehicleList models={models}/>} />
         </Routes>
       </div>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios'
 
-export default function AutomobileForm({models}) {
+export default function AutomobileForm({models, getAuto}) {
     const [color, setColor] =useState('');
     const [year, setYear] =useState('');
     const [vin, setVin] =useState('');
@@ -26,6 +27,33 @@ export default function AutomobileForm({models}) {
         setModelID(value)
     }
 
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const data = {}; 
+    //     data.color = color;
+    //     data.year = year;
+    //     data.vin = vin;
+    //     data.model_id = modelId;
+
+    //     const automobileUrl = 'http://localhost:8100/api/automobiles/';
+    //     const fetchConfig = {
+    //         method: "post",
+    //         body: JSON.stringify(data),
+    //         headers: {
+    //         'Content-Type': 'application/json',
+    //         },
+    //     };
+    //     const response = await fetch(automobileUrl, fetchConfig);
+    //     console.log("this is the response", response)
+    //     if (response.ok) {
+    //         const newAutomobile = await response.json();
+    //         console.log(newAutomobile);
+    //         setColor('');
+    //         setYear('');
+    //         setVin('');
+    //         setModelID('');
+    //     }
+    // }
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {}; 
@@ -34,25 +62,15 @@ export default function AutomobileForm({models}) {
         data.vin = vin;
         data.model_id = modelId;
 
-        const automobileUrl = 'http://localhost:8100/api/automobiles/';
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-            'Content-Type': 'application/json',
-            },
-        };
-        const response = await fetch(automobileUrl, fetchConfig);
-        console.log("this is the response", response)
-        if (response.ok) {
-            const newAutomobile = await response.json();
-            console.log(newAutomobile);
+        axios.post('http://localhost:8100/api/automobiles/', data)
+        .then((response) => {
             setColor('');
             setYear('');
             setVin('');
             setModelID('');
-        }
-    }
+            getAuto();
+    })
+}
     return (
         <div className="row">
         <div className="offset-3 col-6">
