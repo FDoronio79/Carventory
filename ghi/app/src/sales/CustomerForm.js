@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios'
 
-export default function CustomerForm() {
+export default function CustomerForm({getCustomers}) {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [phoneNumber, setPhoneNum] = useState('');
@@ -24,23 +25,30 @@ export default function CustomerForm() {
         data.name = name;
         data.address = address;
         data.phoneNumber = phoneNumber;
-        const CustomerUrl = 'http://localhost:8090/api/customers/';
-            const fetchConfig = {
-                method: "post",
-                body: JSON.stringify(data),
-                headers: {
-                'Content-Type': 'application/json',
-                },
-            };
-            const response = await fetch(CustomerUrl, fetchConfig);
-            console.log("this is the response", response)
-            if (response.ok) {
-                const newCustomer = await response.json();
-                console.log(newCustomer);
-                setName('');
-                setAddress('');
-                setPhoneNum('');
-        }
+        const customerURL = 'http://localhost:8090/api/customers/';
+        axios.post(customerURL, data)
+        .then((response) => {
+            getCustomers();
+            setName('');
+            setAddress('');
+            setPhoneNum('');
+        })
+        //     const fetchConfig = {
+        //         method: "post",
+        //         body: JSON.stringify(data),
+        //         headers: {
+        //         'Content-Type': 'application/json',
+        //         },
+        //     };
+        //     const response = await fetch(CustomerUrl, fetchConfig);
+        //     console.log("this is the response", response)
+        //     if (response.ok) {
+        //         const newCustomer = await response.json();
+        //         console.log(newCustomer);
+        //         setName('');
+        //         setAddress('');
+        //         setPhoneNum('');
+        // }
     }
     return (
             <div className="row">

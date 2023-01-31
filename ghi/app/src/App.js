@@ -148,7 +148,7 @@ function App() {
           <Route path="inventory/newvehiclemodel/" element={<VehicleForm manufacturers={manufacturers} getModels={getModels}/>} />
           <Route path="sales/salesrecords/" element={<SalesRecordsList salesRecords={salesRecords} />} />
           <Route path="sales/newsalesrecord/" element={<SalesRecordForm salesPersons={salesPersons} customers={customers} vins={vins} getSR={getSR}/>} />
-          <Route path="sales/newcustomer/" element={<CustomerForm />} />
+          <Route path="sales/newcustomer/" element={<CustomerForm getCustomers={getCustomers} />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/appointments" element={<AppointmentsList appointments={appointments}/>} />
           <Route path="/appointments/new" element={<AppointmentForm technicians={technicians} getApts={getApts}/>} />
