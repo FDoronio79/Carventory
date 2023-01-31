@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios'
 
-export default function SalesRecordForm({salesPersons, customers, vins}) {
+export default function SalesRecordForm({salesPersons, customers, vins, getSR}) {
     const [salesPerson, setSP] = useState('');
     const [customer, setCustomer] = useState('');
     const [vin, setVin] = useState('');
@@ -32,23 +33,31 @@ export default function SalesRecordForm({salesPersons, customers, vins}) {
         data.price = price;
 
         const salesRecordUrl = 'http://localhost:8090/api/salesrecords/';
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-            'Content-Type': 'application/json',
-            },
-        };
-        const response = await fetch(salesRecordUrl, fetchConfig);
-        console.log("this is the response", response)
-        if (response.ok) {
-            const newSalesRecord = await response.json();
-            console.log(newSalesRecord);
+        axios.post(salesRecordUrl, data)
+        .then((response) => {
+            getSR();
             setSP('');
             setCustomer('');
             setVin('');
             setPrice('');
-        }
+        })
+        // const fetchConfig = {
+        //     method: "post",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //     'Content-Type': 'application/json',
+        //     },
+        // };
+        // const response = await fetch(salesRecordUrl, fetchConfig);
+        // console.log("this is the response", response)
+        // if (response.ok) {
+        //     const newSalesRecord = await response.json();
+        //     console.log(newSalesRecord);
+        //     setSP('');
+        //     setCustomer('');
+        //     setVin('');
+        //     setPrice('');
+        // }
     }
     return (
             <div className="row">
